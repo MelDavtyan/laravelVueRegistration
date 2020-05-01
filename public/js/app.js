@@ -2147,6 +2147,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2155,7 +2162,7 @@ __webpack_require__.r(__webpack_exports__);
         email: "",
         password: "",
         password_confirmation: "",
-        errors: {}
+        errors: []
       }
     };
   },
@@ -95194,8 +95201,11 @@ var actions = {
         window.location.replace("/home");
       }
     })["catch"](function (error) {
-      _this.errors = error.response.data;
-      console.log(_this.errors);
+      if (error.response.status == 422) {
+        _this.errors = error.response.data.errors;
+        console.log(_this.errors);
+      } // console.log(this.errors);
+
     });
   }
 };

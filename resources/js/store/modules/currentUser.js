@@ -31,8 +31,7 @@ const actions= {
             email: user.email,
             password: user.password,
             password_confirmation: user.password_confirmation,
-        })
-            .then( response => {
+        }).then( response => {
                 if (response.data.access_token) {
                     localStorage.setItem(
                         "blog_token",
@@ -40,11 +39,13 @@ const actions= {
                     )
                     window.location.replace("/home")
                 }
-            })
-
-            .catch(error => {
-                this.errors = error.response.data;
+         }).catch(error => {
+            if (error.response.status == 422){
+                this.errors = error.response.data.errors;
                 console.log(this.errors);
+
+            }
+            // console.log(this.errors);
             });
 
     }

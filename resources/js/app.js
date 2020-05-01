@@ -37,5 +37,5 @@ Vue.component('register-form', require('./components/registerForm.vue').default)
 const app = new Vue({
     vuetify: Vuetify,
     el: '#app',
-    store
+    store,
 });
